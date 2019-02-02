@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -9,8 +8,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
-const styles = {
+import TextField from '@material-ui/core/TextField';
+const styles = theme => ({
   card: {
     maxWidth: 345,
     display: 'flex',
@@ -19,37 +18,97 @@ const styles = {
   },
   media: {
     objectFit: 'cover'
+  },
+  inputRoot: {
+    color: 'inherit',
+    width: '100%'
+  },
+  inputInput: {
+    paddingTop: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit,
+    paddingLeft: theme.spacing.unit * 10,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: 200
+    }
   }
-};
+});
 
-class Home extends React.Component {
+export default class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { textToTranslate: '' };
+  }
+
+  handleSubmit() {
+    console.log('text');
+    const self = this;
+
+    self.setState({ multiline: '' });
+    //onbutton press send the text to hashing function
+  }
   render() {
     return (
-      <Card
-        style={{
-          float: 'none',
-          width: '55%',
-          marginLeft: 'auto',
-          marginRight: 'auto'
-        }}
-      >
-        {' '}
-        <Typography variant="display3" align="center">
-          Books
-        </Typography>
-        <CardMedia
-          component="img"
-          height="50%"
-          image="/logo.jpg"
-          title="logo"
-          fullwidth="true"
-        />
-        <CardContent>
-          <Typography variant="display3">
-            Enter some stuff to translate
+      <div>
+        <Card
+          style={{
+            float: 'none',
+            width: '55%',
+            marginLeft: 'auto',
+            marginRight: 'auto'
+          }}
+        >
+          {' '}
+          <Typography variant="display3" align="center">
+            Let's Hash it out!
           </Typography>
-        </CardContent>
-      </Card>
+          <CardMedia
+            component="img"
+            image="https://cdn101.picsart.com/207085903000201.jpg?r1024x1024"
+            title="home"
+          />
+        </Card>
+        <Card
+          style={{
+            float: 'none',
+            width: '55%',
+            marginLeft: 'auto',
+            marginRight: 'auto'
+          }}
+        >
+          <CardContent>
+            <Typography variant="display3" align="center">
+              Enter some stuff to translate
+            </Typography>
+          </CardContent>
+          <CardContent align="center">
+            <TextField
+              id="outlined-multiline-flexible"
+              // label="Enter Text Here:"
+              // multiline
+              rowsMax="4"
+              classes={{
+                root: styles.inputRoot,
+                input: styles.inputInput
+              }}
+              value={this.state.textToTranslate}
+              onChange={event =>
+                this.setState({ textToTranslate: event.target.value })
+              }
+              margin="normal"
+              variant="outlined"
+              centered
+            />
+          </CardContent>
+          <CardContent align="center">
+            <Button variant="contained" color="primary">
+              Submit
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
     );
   }
 }

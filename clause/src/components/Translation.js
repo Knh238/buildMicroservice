@@ -22,7 +22,7 @@ const styles = {
   }
 };
 
-class Translation extends React.Component {
+export default class Translation extends React.Component {
   render() {
     return (
       <Card

@@ -22,7 +22,7 @@ const styles = {
   }
 };
 
-class Claws extends React.Component {
+export default class Claws extends React.Component {
   render() {
     return (
       <Card
@@ -35,19 +35,15 @@ class Claws extends React.Component {
       >
         {' '}
         <Typography variant="display3" align="center">
-          Books
+          Translatation
         </Typography>
         <CardMedia
           component="img"
-          height="50%"
-          image="/logo.jpg"
-          title="logo"
-          fullwidth="true"
+          image="https://cdn141.picsart.com/271471483023201.png?c480x480"
+          title="home"
         />
         <CardContent>
-          <Typography variant="display3">
-            Enter some stuff to translate
-          </Typography>
+          <Typography variant="display3">Claws</Typography>
         </CardContent>
       </Card>
     );

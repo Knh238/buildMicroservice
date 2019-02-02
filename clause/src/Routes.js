@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 import { withRouter, Route, Switch } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
@@ -11,9 +11,9 @@ export default class Routes extends Component {
     return (
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/def" component={ClauseDefinition} />
+        <Route exact path="/Def" component={ClauseDefinition} />
         <Route exact path="/Claws" component={Claws} />
-        <Route exact path="/translation" component={Translation} />
+        <Route exact path="/Translation" component={Translation} />
       </Switch>
     );
   }

@@ -1,10 +1,6 @@
-import React, { Component } from 'react';
-
-import './App.css';
-
 import React from 'react';
 
-import SearchBar from './componentsSearchBar';
+// import SearchBar from './componentsSearchBar';
 // import NavDrawer from './components/NavDrawer';
 import Routes from './Routes';
 
@@ -17,7 +13,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div
+        {/* <div
           style={{
             position: 'absolute',
             left: 0,
@@ -26,7 +22,7 @@ class App extends React.Component {
           }}
         >
           <SearchBar />
-        </div>
+        </div> */}
         <div
           style={{
             position: 'absolute',

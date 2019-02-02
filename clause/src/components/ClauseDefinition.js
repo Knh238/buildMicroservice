@@ -22,7 +22,7 @@ const styles = {
   }
 };
 
-class ClauseDefinition extends React.Component {
+export default class ClauseDefinition extends React.Component {
   render() {
     return (
       <Card
@@ -35,7 +35,7 @@ class ClauseDefinition extends React.Component {
       >
         {' '}
         <Typography variant="display3" align="center">
-          Books
+          Translation:
         </Typography>
         <CardMedia
           component="img"
@@ -45,9 +45,7 @@ class ClauseDefinition extends React.Component {
           fullwidth="true"
         />
         <CardContent>
-          <Typography variant="display3">
-            Enter some stuff to translate
-          </Typography>
+          <Typography variant="display3">Clause</Typography>
         </CardContent>
       </Card>
     );
