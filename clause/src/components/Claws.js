@@ -34,7 +34,11 @@ export default class Claws extends React.Component {
         }}
       >
         {' '}
-        <Typography variant="display3" align="center">
+        <Typography
+          variant="h3"
+          style={{ fontFamily: 'Signika' }}
+          align="center"
+        >
           Translatation
         </Typography>
         <CardMedia
@@ -43,7 +47,9 @@ export default class Claws extends React.Component {
           title="home"
         />
         <CardContent>
-          <Typography variant="display3">Claws</Typography>
+          <Typography variant="h3" style={{ fontFamily: 'Signika' }}>
+            Claws
+          </Typography>
         </CardContent>
       </Card>
     );

@@ -1,22 +1,33 @@
 const crypto = require('crypto');
+
+// function sha256(data) {
+//   const hash = crypto
+//     .createHash('sha256')
+//     .update(data, 'utf8')
+//     .digest('hex');
+//   return hash;
+// }
+
+// sha256('foo');
+
+// option 2
 const hash = crypto.createHash('sha256');
 
-hash.on('readable', () => {
-  // Only one element is going to be produced by the
-  // hash stream.
-  const data = hash.read();
-  if (data) {
-    console.log(data.toString('hex'));
-    // Prints:
-    //   6a2da20943931e9834fc12cfe5bb47bbd9ae43489a30726962b576f4e3993e50
-  }
-});
+function hashFunc(inputText) {
+  hash.on('readable', () => {
+    const data = hash.read();
+    if (data) {
+      console.log(data.toString('hex'));
+    }
+  });
+  hash.write(inputText);
+  hash.end();
+}
+hashFunc('foo');
 
-// hash.write('some data to hash');
-// Prints:
-//   6a2da20943931e9834fc12cfe5bb47bbd9ae43489a30726962b576f4e3993e50
-hash.write('foo');
-hash.end();
-
-// hash.update('foo');
-// console.log(hash.digest('hex'));
+// option 3
+// function hashFunc(inputText) {
+//   hash.update(inputText);
+//   console.log(hash.digest('hex'));
+// }
+// hashFunc('foo');

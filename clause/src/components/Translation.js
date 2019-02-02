@@ -34,8 +34,12 @@ export default class Translation extends React.Component {
         }}
       >
         {' '}
-        <Typography variant="display3" align="center">
-          Books
+        <Typography
+          variant="h3"
+          style={{ fontFamily: 'Signika' }}
+          align="center"
+        >
+          Translation
         </Typography>
         <CardMedia
           component="img"
@@ -45,7 +49,7 @@ export default class Translation extends React.Component {
           fullwidth="true"
         />
         <CardContent>
-          <Typography variant="display3">
+          <Typography variant="h3" style={{ fontFamily: 'Signika' }}>
             Enter some stuff to translate
           </Typography>
         </CardContent>

@@ -34,7 +34,11 @@ export default class ClauseDefinition extends React.Component {
         }}
       >
         {' '}
-        <Typography variant="display3" align="center">
+        <Typography
+          variant="h3"
+          style={{ fontFamily: 'Signika' }}
+          align="center"
+        >
           Translation:
         </Typography>
         <CardMedia
@@ -45,7 +49,9 @@ export default class ClauseDefinition extends React.Component {
           fullwidth="true"
         />
         <CardContent>
-          <Typography variant="display3">Clause</Typography>
+          <Typography variant="h3" style={{ fontFamily: 'Signika' }}>
+            Clause
+          </Typography>
         </CardContent>
       </Card>
     );
