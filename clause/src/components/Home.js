@@ -34,6 +34,13 @@ export default class Home extends React.Component {
 
   handleSubmit() {
     const input = this.state.textToTranslate;
+    //insert some alternative logic here to check if input is a keyword or a acat.
+    //if it's a clause keyword settranslation to 'clause' and check in the body for that
+    //if it's a cat keyword settranslation to 'claws' and check in teh body for that
+    //in the render below you can do this.translation === 'claws?' return <claws/>
+    // could do -- this.state.translation === 'claws' ||  'clause'?
+    //return <{this.state.translation}/> --this would be Claws or Clause component
+    //the else would be : retunr translation card as normal
 
     // const data = await postText(input);
     const result = crypto
@@ -124,14 +131,12 @@ export default class Home extends React.Component {
               width: '55%',
               marginLeft: 'auto',
               marginRight: 'auto',
-              // backgroundColor: '#303f9f'
               backgroundColor: '#009688'
             }}
           >
             <CardContent>
               <Typography
                 paragraph
-                // variant="h5"
                 gutterBottom
                 style={{
                   fontFamily: 'Major Mono Display'
