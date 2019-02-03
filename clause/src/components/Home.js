@@ -10,10 +10,14 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper';
+const crypto = require('crypto');
+const hash = crypto.createHash('sha256');
 
 async function postText(inputText) {
   try {
     const { data } = await axios.post(`/messages/`, inputText);
+    // hashFunc(inputText);
     return data;
     // ownProps.history.push(`/messages`);
   } catch (err) {
@@ -28,91 +32,116 @@ export default class Home extends React.Component {
     this.state = { textToTranslate: '', translation: '' };
   }
 
-  async handleSubmit() {
+  handleSubmit() {
     const input = this.state.textToTranslate;
-    // console.log('text', input);
-    const data = await postText(input);
-    console.log('text', input, data);
-    this.setState({ textToTranslate: '', translation: data });
+
+    // const data = await postText(input);
+    const result = crypto
+      .createHash('sha256')
+      .update(input, 'binary')
+      .digest('hex');
+    console.log('text', input, result);
+    this.setState({ textToTranslate: '', translation: result });
   }
   render() {
     return (
       <div>
-        <Card
-          style={{
-            float: 'none',
-            width: '55%',
-            marginLeft: 'auto',
-            marginRight: 'auto'
-          }}
-        >
-          {' '}
-          <Typography
-            variant="h3"
-            style={{ fontFamily: 'Signika' }}
-            align="center"
+        <div>
+          <Card
+            style={{
+              float: 'none',
+              width: '55%',
+              marginLeft: 'auto',
+              marginRight: 'auto'
+            }}
           >
-            Let's Hash it out!
-          </Typography>
-          <CardMedia
-            component="img"
-            image="https://cdn101.picsart.com/207085903000201.jpg?r1024x1024"
-            title="home"
-          />
-        </Card>
-        <Card
-          style={{
-            float: 'none',
-            width: '55%',
-            marginLeft: 'auto',
-            marginRight: 'auto'
-          }}
-        >
-          <CardContent>
+            {' '}
             <Typography
               variant="h3"
               style={{ fontFamily: 'Signika' }}
               align="center"
             >
-              Enter some stuff to translate
+              Let's Hash it out!
             </Typography>
-          </CardContent>
-          <CardContent align="center">
-            <TextField
-              id="outlined-multiline-flexible"
-              rowsMax="4"
-              classes={{
-                root: styles.inputRoot,
-                input: styles.inputInput
-              }}
-              value={this.state.textToTranslate}
-              onChange={event =>
-                this.setState({ textToTranslate: event.target.value })
-              }
-              margin="normal"
-              variant="outlined"
-              centered
+            <CardMedia
+              component="img"
+              image="https://cdn101.picsart.com/207085903000201.jpg?r1024x1024"
+              title="home"
             />
-          </CardContent>
-          <CardContent align="center">
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => this.handleSubmit()}
-            >
-              Submit
-            </Button>
-          </CardContent>
-          <CardContent>
-            <Typography
-              variant="h3"
-              style={{ fontFamily: 'Permanent Marker' }}
-              align="center"
-            >
-              {this.state.translation}
-            </Typography>
-          </CardContent>
-        </Card>
+          </Card>
+        </div>
+        <div>
+          <Card
+            style={{
+              float: 'none',
+              width: '55%',
+              marginLeft: 'auto',
+              marginRight: 'auto'
+            }}
+          >
+            <CardContent>
+              <Typography
+                variant="h3"
+                style={{ fontFamily: 'Signika' }}
+                align="center"
+              >
+                Enter some stuff to translate
+              </Typography>
+            </CardContent>
+            <CardContent align="center">
+              <TextField
+                id="outlined-multiline-flexible"
+                rowsMax="4"
+                classes={{
+                  root: styles.inputRoot,
+                  input: styles.inputInput
+                }}
+                value={this.state.textToTranslate}
+                onChange={event =>
+                  this.setState({ textToTranslate: event.target.value })
+                }
+                margin="normal"
+                variant="outlined"
+                centered
+              />
+            </CardContent>
+            <CardContent align="center">
+              <Button
+                variant="contained"
+                // color="primary"
+                style={{ backgroundColor: '#ef9a9a' }}
+                onClick={() => this.handleSubmit()}
+              >
+                Submit
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+        <div>
+          <Card
+            style={{
+              float: 'none',
+              width: '55%',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              // backgroundColor: '#303f9f'
+              backgroundColor: '#009688'
+            }}
+          >
+            <CardContent>
+              <Typography
+                paragraph
+                // variant="h5"
+                gutterBottom
+                style={{
+                  fontFamily: 'Major Mono Display'
+                }}
+              >
+                {this.state.translation}
+              </Typography>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     );
   }
