@@ -1,13 +1,14 @@
-const express = require('express');
-const router = express.Router();
-module.exports = router;
+'use strict';
+const router = require('express').Router();
 
 router.use('/messages', require('./messages'));
-router.use('/clause', require('./clause'));
-router.use('/claws', require('./claws'));
+// router.use('/clause', require('./clause'));
+// router.use('/claws', require('./claws'));
 
 router.use((req, res, next) => {
-  const error = new Error('Not Found');
-  error.status = 404;
-  next(error);
+  const err = new Error('API route not found!');
+  err.status = 404;
+  next(err);
 });
+
+module.exports = router;
