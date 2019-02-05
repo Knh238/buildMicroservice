@@ -44,12 +44,12 @@ export default class ClauseDefinition extends React.Component {
         <CardMedia
           component="img"
           height="50%"
-          image="/logo.jpg"
+          image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZKhXkxjGCzShJzXhMGDCwKCv4BNJKzACb0bI9uWsOhECoWHeK"
           title="logo"
           fullwidth="true"
         />
         <CardContent>
-          <Typography variant="h3" style={{ fontFamily: 'Signika' }}>
+          <Typography variant="h1" style={{ fontFamily: 'Signika' }}>
             Clause
           </Typography>
         </CardContent>

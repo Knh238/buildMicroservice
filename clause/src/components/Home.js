@@ -11,20 +11,57 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
+import ClauseDefinition from './ClauseDefinition';
+import Claws from './Claws';
 const crypto = require('crypto');
 const hash = crypto.createHash('sha256');
 
-async function postText(inputText) {
-  try {
-    const { data } = await axios.post(`/messages/`, inputText);
-    // hashFunc(inputText);
-    return data;
-    // ownProps.history.push(`/messages`);
-  } catch (err) {
-    console.error(err);
-    // ownProps.history.push(`/oops`);
+function checkKeyTerms(word) {
+  word = word.toLowerCase();
+  const clauseArr = [
+    'clause',
+    'smartclause',
+    'smartcontracts',
+    'contracts',
+    'contract'
+  ];
+  if (clauseArr.indexOf(word) !== -1) {
+    console.log('hey it has a match');
+    return true;
+  } else {
+    return false;
   }
 }
+
+function checkCatTerms(term) {
+  term = term.toLowerCase();
+  const catTerms = [
+    'meow',
+    'kitty',
+    'cat',
+    'furball',
+    'kitten',
+    'paws',
+    'purr'
+  ];
+  if (catTerms.indexOf(term) !== -1) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// async function postText(inputText) {
+//   try {
+//     const { data } = await axios.post(`/messages/`, inputText);
+//     // hashFunc(inputText);
+//     return data;
+//     // ownProps.history.push(`/messages`);
+//   } catch (err) {
+//     console.error(err);
+//     // ownProps.history.push(`/oops`);
+//   }
+// }
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -34,21 +71,21 @@ export default class Home extends React.Component {
 
   handleSubmit() {
     const input = this.state.textToTranslate;
-    //insert some alternative logic here to check if input is a keyword or a acat.
-    //if it's a clause keyword settranslation to 'clause' and check in the body for that
-    //if it's a cat keyword settranslation to 'claws' and check in teh body for that
-    //in the render below you can do this.translation === 'claws?' return <claws/>
-    // could do -- this.state.translation === 'claws' ||  'clause'?
-    //return <{this.state.translation}/> --this would be Claws or Clause component
-    //the else would be : retunr translation card as normal
-
-    // const data = await postText(input);
-    const result = crypto
-      .createHash('sha256')
-      .update(input, 'binary')
-      .digest('hex');
-    console.log('text', input, result);
-    this.setState({ textToTranslate: '', translation: result });
+    const logoTerm = checkKeyTerms(input);
+    const catTerm = checkCatTerms(input);
+    if (logoTerm) {
+      this.setState({ textToTranslate: '', translation: 'CLAUSE!' });
+    } else if (catTerm) {
+      this.setState({ textToTranslate: '', translation: 'CLAWS!' });
+    } else {
+      // const data = await postText(input);
+      const result = crypto
+        .createHash('sha256')
+        .update(input, 'binary')
+        .digest('hex');
+      console.log('text', input, result);
+      this.setState({ textToTranslate: '', translation: result });
+    }
   }
   render() {
     return (
@@ -115,7 +152,6 @@ export default class Home extends React.Component {
             <CardContent align="center">
               <Button
                 variant="contained"
-                // color="primary"
                 style={{ backgroundColor: '#ef9a9a' }}
                 onClick={() => this.handleSubmit()}
               >
@@ -125,6 +161,8 @@ export default class Home extends React.Component {
           </Card>
         </div>
         <div>
+          {this.state.translation === 'CLAUSE!' ? <ClauseDefinition /> : null}
+          {this.state.translation === 'CLAWS!' ? <Claws /> : null}
           <Card
             style={{
               float: 'none',
@@ -146,6 +184,7 @@ export default class Home extends React.Component {
               </Typography>
             </CardContent>
           </Card>
+          )}
         </div>
       </div>
     );

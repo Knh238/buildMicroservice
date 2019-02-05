@@ -43,11 +43,12 @@ export default class Claws extends React.Component {
         </Typography>
         <CardMedia
           component="img"
-          image="https://cdn141.picsart.com/271471483023201.png?c480x480"
+          // image="https://cdn141.picsart.com/271471483023201.png?c480x480"
+          image="https://i.imgflip.com/26jufc.jpg"
           title="home"
         />
         <CardContent>
-          <Typography variant="h3" style={{ fontFamily: 'Signika' }}>
+          <Typography variant="h3" style={{ fontFamily: 'Signika' }} centered>
             Claws
           </Typography>
         </CardContent>

@@ -10,16 +10,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {/* <div
-          style={{
-            position: 'absolute',
-            left: 0,
-            width: '10%',
-            height: '100%'
-          }}
-        >
-          <SearchBar />
-        </div> */}
         <div
           style={{
             position: 'absolute',

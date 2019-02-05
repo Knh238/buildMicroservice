@@ -1,9 +1,6 @@
-'use strict';
 const router = require('express').Router();
-
-router.use('/messages', require('./messages'));
-// router.use('/clause', require('./clause'));
-// router.use('/claws', require('./claws'));
+const { HashedMessages } = require('../db');
+router.use('/', require('./messages'));
 
 router.use((req, res, next) => {
   const err = new Error('API route not found!');
